@@ -1,5 +1,5 @@
-Command Fusion JavaScript API
-====
+CommandFusion JavaScript API
+
 
 CommandFusion JavaScript API
 
