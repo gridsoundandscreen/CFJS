@@ -33,6 +33,7 @@ var CF =
     guiResumedEventCallback:function() {},
 
     //CONSTANTS
+    guiURL: "URL",
     GlobalTokensJoin:"e0",
     AnimationCurveLinear: "ANIMATION_CURVE_LINEAR",
     AnimationCurveEaseIn: "ANIMATION_CURVE_EASE_IN",
@@ -46,24 +47,32 @@ var CF =
     getJoins:function(arrayOfJoins, callback){},
     getJoinsCallback:function(arrayOfJoinValues){},
 
-    setJoin:function (join, value, tokens) {},
+    setJoin:function (join, value, sendJoinChangeEvent) {},
 
-    setJoins:function (joinsArray, sendJoinChangeEvent) {},
+    setJoins:function (joinsArray, sendJoinChangeEvents) {},
 
     setToken:function (join, token, value) {},
 
     getProperties:function (joinOrJoinsArray, callback) {},
     getPropertiesCallback:function(join, x, y, w, h, xrotation, yrotation, zrotation, scale, opacity, theme){},
 
-    setProperties:function (changes) {},
+    setProperties:function (changes, delay, duration, curve, callback, callbackParam1, callbackParamN) {},
+    setPropertiesCallback:function() {},
 
     getGuiDescription:function (callback) {},
     getGuiDescriptionCallback:function (object) {},
 
 //LISTS
+    //EVENTS
+    ListWillStartScrollingEvent: "LIST_WILL_START_SCROLLING_EVENT",
+    ListDidScrollEvent: "LIST_DID_SCROLL_EVENT",
+    ListDidEndScrollingEvent: "LIST_DID_END_SCROLLING_EVENT",
+
     //CONSTANTS
+    //Index Constants
     LastItem:"LAST_ITEM",
     AllItems:"ALL_ITEMS",
+    //Position Constants
     TopPosition:"TOP_POSITION",
     LeftPosition:"LEFT_POSITION",
     MiddlePosition:"MIDDLE_POSITION",
@@ -82,31 +91,29 @@ var CF =
 
     listScroll:function (list, index, position, animated, visibleOnly) {},
 
-    listInfo:function (list, index, count, callback) {},
-    ListInfoCallback:function (join, numberOfItems, currentIndexOfFirstVisibleItem, numberOfVisibleItems, currentScrollPosition) {},
+    listInfo:function (list, callback) {},
+    listInfoCallback:function (join, numberOfItems, currentIndexOfFirstVisibleItem, numberOfVisibleItems, currentScrollPosition) {},
 
     listContents:function (list, index, count, callback) {},
-    ListContentsCallback:function (object) {},
+    listContentsCallback:function (object) {},
 
 //DISPLAY
+    //EVENTS (and corresponding callbacks)
+    OrientationChangeEvent:"ORIENTATION_CHANGE_EVENT",
+    orientationChangeEventCallback:function (pageName, newOrientation) {},
+    PageFlipEvent:"PAGE_FLIP_EVENT",
+    pageFlipEventCallback:function (from, to, orientation) {},
+
     //CONSTANTS
     PortraitOrientation:"PORTRAIT_ORIENTATION",
     LandscapeOrientation:"LANDSCAPE_ORIENTATION",
 
     //VARIABLES (UP TO DATE)
-    currentPage:'',
-    currentOrientation:"",
-
-    //EVENTS
-    OrientationChangeEvent:"ORIENTATION_CHANGE_EVENT",
-    orientationChangeEventCallback:function (pageName, newOrientation) {},
-
-    PageFlipEvent:"PAGE_FLIP_EVENT",
-    pageFlipEventCallback:function (from, to, orientation) {},
+    currentPage:'CURRENT_PAGE',
+    currentOrientation:"CURRENT_ORIENTATION",
 
     //FUNCTIONS
     flipToPage:function (pageName) {},
-
 
 //NETWORK
     //CONSTANTS
@@ -114,16 +121,15 @@ var CF =
     BINARY:"BINARY",
 
     //VARIABLES
-    ipv4address:"",
-    ipv4netmask:"",
-    ipv6address:"",
-    MACaddress:"",
+    ipv4address:"IPV4_ADDRESS",
+    ipv4netmask:"IPV4_NETMASK",
+    ipv6address:"IPV6_ADDRESS",
+    ipv6netmask: "IPV6_NETMASK",
+    MACaddress:"MAC_ADDRESS",
 
     systems:{},
 
-    device:{},
-
-    //EVENTS
+    //EVENTS (and corresponding callbacks)
     NetworkStatusChangeEvent:"NETWORK_STATUS_CHANGE_EVENT",
     networkStatusChangedEventCallback:function (networkStatus) {},
 
@@ -132,6 +138,10 @@ var CF =
 
     FeedbackMatchedEvent:"FEEDBACK_MATCHED_EVENT",
     feedbackMatchedEventCallback:function (feedbackItem, matchedString) {},
+
+    //CONSTANTS
+    UTF8: "UTF8",
+    BINARY: "BINARY",
 
     //FUNCTIONS
     setSystemProperties:function (systemName, changes) {},
@@ -168,25 +178,64 @@ var CF =
     MovieLoadStateChangedEvent:"MOVIE_LOAD_STATE_CHANGED_EVENT",
     movieLoadStateChangedEventCallback:function (join, movie) {},
 
+
+//SENSORS
+    AccelerometerSensor: "ACCELEROMETER_SENSOR",
+    GyroscopeSensor: "GYROSCOPE_SENSOR",
+    AttitudeSensor: "ATTITUDE_SENSOR",
+    HeadingSensor: "HEADING_SENSOR",
+    LocationSensor: "LOCATION_SENSOR",
+
+    //FUNCTIONS
+    startMonitoring:function(sensor, options, callback) {},
+    startMonitoringCallback:function(sensorType, data) {},
+
+    stopMonitoring: function(monitorID) {},
+
+
 //UTILITIES
+    //EVENTS
+    DevicePropertyChangedEvent: "DEVICE_PROPERTY_CHANGED_EVENT",
+    devicePropertyChangedEventCallback: function(property, value) {},
+
+    ScreenBrightnessProperty: "SCREEN_BRIGHTNESS_PROPERTY",
+    SoundOutputVolumeProperty: "SOUND_OUTPUT_VOLUME_PROPERTY",
+    BatteryLevelProperty: "BATTERY_LEVEL_PROPERTY",
+    BatteryChargeStatusProperty: "BATTERY_CHARGE_STATUS_PROPERTY",
+
     //CONSTANTS
+    //Hash
     Hash_MD5:"HASH_MD5",
     Hash_SHA1:"HASH_SHA1",
     Hash_SHA256:"HASH_SHA256",
     Hash_SHA384:"HASH_SHA384",
     Hash_SHA512:"HASH_SHA512",
-
+    //CRC
     CRC_8:"CRC_8",
     CRC_16:"CRC_16",
     CRC_16_CCITT:"CRC_16_CCITT",
     CRC_16_MODBUS:"CRC_16_MODBUS",
     CRC_32:"CRC_32",
     CRC_32C:"CRC_32C",
-
+    //Output Format
     OUTPUT_NUMBER:"OUTPUT_NUMBER",
     OUTPUT_STRING:"OUTPUT_STRING",
     OUTPUT_BINARY:"OUTPUT_BINARY",
     OUTPUT_BINARY_LE:"OUTPUT_BINARY_LE",
+    //Battery Charge
+    CHARGE_UNKNOWN: "CHARGE_UNKNOWN",
+    CHARGE_UNPLUGGED: "CHARGE_UNPLUGGED",
+    CHARGE_CHARGING: "CHARGE_CHARGING",
+    CHARGE_FULL: "CHARGE_FULL",
+
+    //OBJECTS
+    device:
+    {
+        screenBrightness: "SCREEN_BRIGHTNESS",
+        soundOutputVolume: "SOUND_OUTPUT_VOLUME",
+        batteryLevel: "BATTERY_LEVEL",
+        batteryChargeStatus: "BATTERY_CHARGE_STATUS"
+    },
 
     //FUNCTIONS
     log:function (message) {},
@@ -199,6 +248,12 @@ var CF =
     hash:function (hashType, string, callback) {},
     hashCallback:function (hash) {},
 
+    openURL:function(url) {},
+
+    loadGUI:function(url, settings) {},
+
     loadAsset:function (assetName, dataEncoding, callback) {},
-    loadAssetCallback:function(assetFileAsString){}
+    loadAssetCallback:function(assetFileAsString){},
+
+    setDeviceProperty:function(property, value) {}
 };
