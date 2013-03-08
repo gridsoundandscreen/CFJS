@@ -163,10 +163,6 @@ var CF =
     FeedbackMatchedEvent:"FEEDBACK_MATCHED_EVENT",
     feedbackMatchedEventCallback:function (feedbackItem, matchedString) {},
 
-    //CONSTANTS
-    UTF8: "UTF8",
-    BINARY: "BINARY",
-
     //FUNCTIONS
     setSystemProperties:function (systemName, changes) {},
 
