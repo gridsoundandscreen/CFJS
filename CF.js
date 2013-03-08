@@ -47,8 +47,17 @@ var CF =
     getJoins:function(arrayOfJoins, callback){},
     getJoinsCallback:function(arrayOfJoinValues){},
 
+    /**
+     * @param {String} join The list join string in l# format.
+     * @param {Number} value The list index to remove, or start from if removing multiple.
+     * @param {Boolean} [sendJoinChangeEvent="true"] Flag to enable or disable the JoinChangeEvent from firing.
+     */
     setJoin:function (join, value, sendJoinChangeEvent) {},
 
+    /**
+     * @param {Array} joinsArray The array of join values to set.
+     * @param {Boolean} [sendJoinChangeEvents="true"] Flag to enable or disable the JoinChangeEvent from firing.
+     */
     setJoins:function (joinsArray, sendJoinChangeEvents) {},
 
     setToken:function (join, token, value) {},
@@ -83,10 +92,25 @@ var CF =
     PixelPosition:"PIXEL_POSITION",
 
     //FUNCTIONS
+
+    /**
+     * @param {String} list The list join string in l# format.
+     * @param {Array} array The array of list items to add.
+     * @param {Number} [position] The position of the list to add the items. Default is append to the end.
+     */
     listAdd:function (list, array, position) {},
 
+    /**
+     * @param {String} list The list join string in l# format.
+     * @param {Array} array The array of list indexes to update and their values.
+     */
     listUpdate:function (list, array) {},
 
+    /**
+     * @param {String} list The list join string in l# format.
+     * @param {Number} [index] The list index to remove, or start from if removing multiple.
+     * @param {Number} [count] The number of list items to remove, starting at index.
+     */
     listRemove:function (list, index, count) {},
 
     listScroll:function (list, index, position, animated, visibleOnly) {},
@@ -255,5 +279,10 @@ var CF =
     loadAsset:function (assetName, dataEncoding, callback) {},
     loadAssetCallback:function(assetFileAsString){},
 
-    setDeviceProperty:function(property, value) {}
+    setDeviceProperty:function(property, value) {},
+
+    watch:function(event, joins, callback) {},
+    watch:function(event, callback) {},
+    unwatch:function(event) {},
+    unwatch:function(event, joins) {}
 };
