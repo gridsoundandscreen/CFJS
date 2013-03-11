@@ -48,8 +48,8 @@ var CF =
     getJoinsCallback:function(arrayOfJoinValues){},
 
     /**
-     * @param {String} join The list join string in l# format.
-     * @param {Number} value The list index to remove, or start from if removing multiple.
+     * @param {String} join The join string.
+     * @param {String} value The value to assign to the join.
      * @param {Boolean} [sendJoinChangeEvent="true"] Flag to enable or disable the JoinChangeEvent from firing.
      */
     setJoin:function (join, value, sendJoinChangeEvent) {},
@@ -151,8 +151,6 @@ var CF =
     ipv6netmask: "IPV6_NETMASK",
     MACaddress:"MAC_ADDRESS",
 
-    systems:{},
-
     //EVENTS (and corresponding callbacks)
     NetworkStatusChangeEvent:"NETWORK_STATUS_CHANGE_EVENT",
     networkStatusChangedEventCallback:function (networkStatus) {},
@@ -166,6 +164,11 @@ var CF =
     //FUNCTIONS
     setSystemProperties:function (systemName, changes) {},
 
+    /**
+     * @param {String} systemName The name of the system (as defined in the GUI) to send the data to.
+     * @param {String} string The message to send to the system.
+     * @param {Number} [outputFormat] The data format to use when sending messages.
+     */
     send:function (systemName, string, outputFormat) {},
 
     runCommand:function (systemName, command) {},
@@ -256,6 +259,65 @@ var CF =
         batteryLevel: "BATTERY_LEVEL",
         batteryChargeStatus: "BATTERY_CHARGE_STATUS"
     },
+    systems: Array(this.system),
+
+    system: {
+        type: "",
+        enabled: false,
+        address: "",
+        port: 0,
+        localPort: 0,
+        connect: "",
+        disconnect: "",
+        connections: []
+    },
+
+    gui: {
+        name: "",
+        url: "",
+        portraitSize: {
+            w: 0,
+            h: 0
+        },
+        landscapeSize: {
+            w: 0,
+            h: 0
+        },
+        allJoins: [],
+        pages: Array(this.page),
+        subpages: Array(this.subpage),
+    },
+
+    page: {
+        name: "",
+        join: "",
+        type: "Page",
+        portraitObjects: Array(this.guiObject),
+        landscapeObjects: Array(this.guiObject)
+    },
+
+    subpage: {
+        name: "",
+        type: "Subpage",
+        objects: []
+    },
+
+    guiObject: {
+        join: "",
+        type: "",
+        digitalJoin: "",
+        activeTextJoin: "",
+        inactiveTextJoin: "",
+        pressedJoin: "",
+        playTriggerJoin: "",
+        stoptriggerJoin: "",
+        backTriggerJoin: "",
+        forwardTriggerJoin: "",
+        refreshTriggerJoin: "",
+        subpage: ""
+    },
+
+    modules: [],
 
     //FUNCTIONS
     log:function (message) {},
