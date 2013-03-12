@@ -47,8 +47,17 @@ var CF =
     getJoins:function(arrayOfJoins, callback){},
     getJoinsCallback:function(arrayOfJoinValues){},
 
+    /**
+     * @param {String} join The join string.
+     * @param {String} value The value to assign to the join.
+     * @param {Boolean} [sendJoinChangeEvent="true"] Flag to enable or disable the JoinChangeEvent from firing.
+     */
     setJoin:function (join, value, sendJoinChangeEvent) {},
 
+    /**
+     * @param {Array} joinsArray The array of join values to set.
+     * @param {Boolean} [sendJoinChangeEvents="true"] Flag to enable or disable the JoinChangeEvent from firing.
+     */
     setJoins:function (joinsArray, sendJoinChangeEvents) {},
 
     setToken:function (join, token, value) {},
@@ -83,10 +92,25 @@ var CF =
     PixelPosition:"PIXEL_POSITION",
 
     //FUNCTIONS
+
+    /**
+     * @param {String} list The list join string in l# format.
+     * @param {Array} array The array of list items to add.
+     * @param {Number} [position] The position of the list to add the items. Default is append to the end.
+     */
     listAdd:function (list, array, position) {},
 
+    /**
+     * @param {String} list The list join string in l# format.
+     * @param {Array} array The array of list indexes to update and their values.
+     */
     listUpdate:function (list, array) {},
 
+    /**
+     * @param {String} list The list join string in l# format.
+     * @param {Number} [index] The list index to remove, or start from if removing multiple.
+     * @param {Number} [count] The number of list items to remove, starting at index.
+     */
     listRemove:function (list, index, count) {},
 
     listScroll:function (list, index, position, animated, visibleOnly) {},
@@ -127,8 +151,6 @@ var CF =
     ipv6netmask: "IPV6_NETMASK",
     MACaddress:"MAC_ADDRESS",
 
-    systems:{},
-
     //EVENTS (and corresponding callbacks)
     NetworkStatusChangeEvent:"NETWORK_STATUS_CHANGE_EVENT",
     networkStatusChangedEventCallback:function (networkStatus) {},
@@ -139,13 +161,14 @@ var CF =
     FeedbackMatchedEvent:"FEEDBACK_MATCHED_EVENT",
     feedbackMatchedEventCallback:function (feedbackItem, matchedString) {},
 
-    //CONSTANTS
-    UTF8: "UTF8",
-    BINARY: "BINARY",
-
     //FUNCTIONS
     setSystemProperties:function (systemName, changes) {},
 
+    /**
+     * @param {String} systemName The name of the system (as defined in the GUI) to send the data to.
+     * @param {String} string The message to send to the system.
+     * @param {Number} [outputFormat] The data format to use when sending messages.
+     */
     send:function (systemName, string, outputFormat) {},
 
     runCommand:function (systemName, command) {},
@@ -236,6 +259,65 @@ var CF =
         batteryLevel: "BATTERY_LEVEL",
         batteryChargeStatus: "BATTERY_CHARGE_STATUS"
     },
+    systems: Array(this.system),
+
+    system: {
+        type: "",
+        enabled: false,
+        address: "",
+        port: 0,
+        localPort: 0,
+        connect: "",
+        disconnect: "",
+        connections: []
+    },
+
+    gui: {
+        name: "",
+        url: "",
+        portraitSize: {
+            w: 0,
+            h: 0
+        },
+        landscapeSize: {
+            w: 0,
+            h: 0
+        },
+        allJoins: [],
+        pages: Array(this.page),
+        subpages: Array(this.subpage),
+    },
+
+    page: {
+        name: "",
+        join: "",
+        type: "Page",
+        portraitObjects: Array(this.guiObject),
+        landscapeObjects: Array(this.guiObject)
+    },
+
+    subpage: {
+        name: "",
+        type: "Subpage",
+        objects: []
+    },
+
+    guiObject: {
+        join: "",
+        type: "",
+        digitalJoin: "",
+        activeTextJoin: "",
+        inactiveTextJoin: "",
+        pressedJoin: "",
+        playTriggerJoin: "",
+        stoptriggerJoin: "",
+        backTriggerJoin: "",
+        forwardTriggerJoin: "",
+        refreshTriggerJoin: "",
+        subpage: ""
+    },
+
+    modules: [],
 
     //FUNCTIONS
     log:function (message) {},
@@ -255,5 +337,10 @@ var CF =
     loadAsset:function (assetName, dataEncoding, callback) {},
     loadAssetCallback:function(assetFileAsString){},
 
-    setDeviceProperty:function(property, value) {}
+    setDeviceProperty:function(property, value) {},
+
+    watch:function(event, joins, callback) {},
+    watch:function(event, callback) {},
+    unwatch:function(event) {},
+    unwatch:function(event, joins) {}
 };
