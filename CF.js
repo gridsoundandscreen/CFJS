@@ -60,6 +60,11 @@ var CF =
      */
     setJoins:function (joinsArray, sendJoinChangeEvents) {},
 
+    /**
+     * @param {String} join The join string.
+     * @param {String} token The token string..
+     * @param {String} value The value to assign to the join.
+     */
     setToken:function (join, token, value) {},
 
     getProperties:function (joinOrJoinsArray, callback) {},
@@ -150,6 +155,8 @@ var CF =
     ipv6address:"IPV6_ADDRESS",
     ipv6netmask: "IPV6_NETMASK",
     MACaddress:"MAC_ADDRESS",
+    networkType: "NETWORK_TYPE",
+
 
     //EVENTS (and corresponding callbacks)
     NetworkStatusChangeEvent:"NETWORK_STATUS_CHANGE_EVENT",
@@ -250,6 +257,12 @@ var CF =
     CHARGE_UNPLUGGED: "CHARGE_UNPLUGGED",
     CHARGE_CHARGING: "CHARGE_CHARGING",
     CHARGE_FULL: "CHARGE_FULL",
+    //Cache
+    CACHE_READONLY: "CACHE_READONLY",
+    CACHE: "CACHE",
+    NO_CACHE: "NO_CACHE",
+    RECACHE: "RECACHE",
+    DECACHE: "DECACHE"
 
     //OBJECTS
     device:
@@ -334,7 +347,7 @@ var CF =
 
     loadGUI:function(url, settings) {},
 
-    loadAsset:function (assetName, dataEncoding, callback) {},
+    loadAsset:function (assetName, dataEncoding, callback, cache) {},
     loadAssetCallback:function(assetFileAsString){},
 
     setDeviceProperty:function(property, value) {},
