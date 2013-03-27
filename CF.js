@@ -156,6 +156,7 @@ var CF =
     ipv6netmask: "IPV6_NETMASK",
     MACaddress:"MAC_ADDRESS",
     networkType: "NETWORK_TYPE",
+    networkSSID: "NETWORK_SSID",
 
 
     //EVENTS (and corresponding callbacks)
