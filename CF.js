@@ -67,6 +67,10 @@ var CF =
      */
     setToken:function (join, token, value) {},
 
+    addTag:function(join, tag) {},
+    addTags:function(joinsArray, tag){},
+    removeTag:function(joinOrJoinsArray, tag) {},
+
     getProperties:function (joinOrJoinsArray, callback) {},
     getPropertiesCallback:function(join, x, y, w, h, xrotation, yrotation, zrotation, scale, opacity, theme){},
 
@@ -353,8 +357,8 @@ var CF =
 
     setDeviceProperty:function(property, value) {},
 
-    watch:function(event, joins, callback) {},
+    watch:function(event, joinsArray, callback) {},
     watch:function(event, callback) {},
     unwatch:function(event) {},
-    unwatch:function(event, joins) {}
+    unwatch:function(event, joinsArray) {}
 };
