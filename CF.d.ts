@@ -323,8 +323,13 @@ interface GuiSettingsObject {
 
 interface CF {
     //GLOBAL
-    watch():void
-    unwatch():void
+    watch(event:string, join:string, callback:()=>void):void
+    watch(event:string, callback:()=>void):void
+
+    unwatch(event:string):void
+    unwatch(event:string, join:string):void
+    unwatch(event:string, joins:string[]):void
+
     //GUI
     //joins
     getJoin(join: string, callback:GetJoinCallback):void
@@ -393,5 +398,5 @@ interface CF {
 declare var CF:CF;
 
 declare module "CF" {
-    export = async;
+    export = CF;
 }
