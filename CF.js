@@ -1,5 +1,24 @@
 var CF =
 {
+    device: {
+        platform: '',
+        version: '',
+        model: '',
+        uuid: '',
+        legacyUniqueIdentifier: '',
+        uniqueIdentifier: '',
+        name: '',
+        screenBrightness: 0.0,
+        soundOutputVolume: 0.0,
+        batteryLevel: 0.0,
+        batteryChargeStatus: 0,
+        hasSenors: [false, false],
+        displayDensity: 1.0
+    },
+    userMain: function() {},
+    systems: {},
+
+
 //GUI
     //EVENTS
     PreloadingCompleteEvent:"PRELOADING_COMPLETE_EVENT",
@@ -270,8 +289,7 @@ var CF =
     DECACHE: "DECACHE"
 
     //OBJECTS
-    device:
-    {
+    device: {
         screenBrightness: "SCREEN_BRIGHTNESS",
         soundOutputVolume: "SOUND_OUTPUT_VOLUME",
         batteryLevel: "BATTERY_LEVEL",

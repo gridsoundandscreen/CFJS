@@ -1,0 +1,18 @@
+{
+  "name": "CFJS",
+  "version": "2.0.0",
+  "description": "Auto-complete and editor snippet library for CommandFusion iViewer ",
+  "main": "src/cfObject.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gridsoundandscreen/CFJS"
+  },
+  "author": "Grid Sound and Screen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gridsoundandscreen/CFJS/issues"
+  }
+}
