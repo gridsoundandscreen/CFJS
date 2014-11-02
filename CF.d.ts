@@ -5,11 +5,13 @@ interface GetJoinCallback {
         value: string,
         tokens:{},
         tags:string[]
-    )
+    ):void
 }
 
 interface GetJoinsCallback {
-    (joins:{})
+    (
+        joins:{}
+    ):void
 }
 
 interface JoinObject {
@@ -49,15 +51,21 @@ interface SetJoinPropertyChangesObject {
 }
 
 interface GetPropertiesCallback {
-    (properties:GetPropertiesChangesObject)
+    (
+        properties:GetPropertiesChangesObject
+    ):void
 }
 
 interface GetMultiplePropertiesCallback {
-    (properties:GetPropertiesChangesObject[])
+    (
+        properties:GetPropertiesChangesObject[]
+    ):void
 }
 
 interface GetGuiDescriptionCallback {
-    (guiDescription:GuiDescriptionObject):void
+    (
+        guiDescription:GuiDescriptionObject
+    ):void
 }
 
 interface PageObject {
@@ -102,7 +110,7 @@ interface WebviewObject extends GuiObject {
 }
 
 interface SubpageRefObject extends GuiObject {
-    subpgae:string
+    subpage:string
 }
 
 interface Size {
@@ -342,7 +350,6 @@ interface CF {
     //properties
     getProperties(join:string, callback:GetPropertiesCallback):void
     getProperties(join:string[], callback:GetMultiplePropertiesCallback):void
-    //TODO fix curve type
     setProperties(changes:SetJoinPropertyChangesObject, delay?:number, duration?:number, curve?:string, callback?:()=>void, ...callbackArgs?:any[]):void
     setProperties(changes:SetJoinPropertyChangesObject[], delay?:number, duration?:number, curve?:string, callback?:()=>void, ...callbackArgs?:any[]):void
 
@@ -357,7 +364,7 @@ interface CF {
     listRemove(list:string, index:number, count:number):void
     listScroll(list:string, index:number, position:number, animated:boolean, visibilityOnly:boolean):void
     listInfo(list:string, callback:ListInfoCallback)
-    listContents(list:string, index:number, count:number, callback:ListContentsCallback)
+    listContents(list:string, index:number, count:number, callback:ListContentsCallback):void
 
     //NETWORK
     setSystemProperties(systemName:string, changes:SetSystemPropertiesObject):void
