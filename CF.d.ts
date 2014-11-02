@@ -349,8 +349,8 @@ interface CF {
     getProperties(join:string, callback:GetPropertiesCallback):void
     getProperties(join:string[], callback:GetMultiplePropertiesCallback):void
     //TODO fix curve type
-    setProperties(changes:SetJoinPropertyChangesObject, delay?:number, duration?:number, curve?:string, callback?:SetPropertiesCallback):void
-    setProperties(changes:SetJoinPropertyChangesObject[], delay?:number, duration?:number, curve?:string, callback?:SetPropertiesCallback):void
+    setProperties(changes:SetJoinPropertyChangesObject, delay?:number, duration?:number, curve?:string, callback?:()=>void, ...callbackArgs?:any[]):void
+    setProperties(changes:SetJoinPropertyChangesObject[], delay?:number, duration?:number, curve?:string, callback?:()=>void, ...callbackArgs?:any[]):void
 
     //gui
     getGuiDescription(callback:GetGuiDescriptionCallback):void
@@ -381,8 +381,8 @@ interface CF {
     stopPublishing(serviceType:string, serviceName:string, port:number):void
 
     //SENSORS
-    startMonitoring(sensor:string, options, callback:StartMonitoringCallback)
-    stopMonitoring(monitorID:string)
+    startMonitoring(sensor:string, options, callback:StartMonitoringCallback):number
+    stopMonitoring(monitorID:string):void
 
     //UTILITIES
     log(msg:string):void
