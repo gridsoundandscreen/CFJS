@@ -8,20 +8,14 @@ interface GetJoinCallback {
     )
 }
 
-interface TokenObject {
-    //TODO
-}
-
 interface GetJoinsCallback {
     (joins:{})
-    //TODO
-    //could define this better with what will be in each join
 }
 
 interface JoinObject {
     join:string
     value:string
-    tokens: TokenObject
+    tokens: {}
     tags:string[]
 }
 
