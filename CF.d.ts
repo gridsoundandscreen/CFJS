@@ -25,7 +25,7 @@ interface JoinObject {
     tags:string[]
 }
 
-interface GetJoinPropertyChangesObject {
+interface GetPropertiesChangesObject {
     join:string
     x:number
     y:number
@@ -55,15 +55,11 @@ interface SetJoinPropertyChangesObject {
 }
 
 interface GetPropertiesCallback {
-    //TODO
+    (properties:GetPropertiesChangesObject)
 }
 
 interface GetMultiplePropertiesCallback {
-    //TODO
-}
-
-interface SetPropertiesCallback {
-    //TODO
+    (properties:GetPropertiesChangesObject[])
 }
 
 interface GetGuiDescriptionCallback {
@@ -134,7 +130,6 @@ interface GuiDescriptionObject {
 interface ListItem {
     title?:boolean
     subpage?:string
-    any
 }
 
 interface ListUpdateItem extends ListItem {
@@ -148,13 +143,13 @@ interface ListInfoCallback {
         first:number,
         numVisible:number,
         scrollPosition:number
-        ):void
+    ):void
 }
 
 interface ListContentsCallback {
     (
         contents:ListContentsObject[]
-        ):void
+    ):void
 }
 
 interface ListContentsObject {
@@ -187,7 +182,7 @@ interface RequestCallback {
         status:number,
         headers:{},
         body:string
-        ):void
+    ):void
 }
 
 interface StartLookupCallback {
@@ -195,7 +190,7 @@ interface StartLookupCallback {
         addedServices:BonjourService[],
         removedServices:BonjourService[],
         error:string
-        ):void
+    ):void
 }
 
 interface BonjourService {
@@ -214,43 +209,101 @@ interface StartPublishingCallback {
         port:number,
         published:boolean,
         error:string
-        ):void
+    ):void
 }
 
 
 /////////////////////////////////////////////////////VIDEO////////////////////////////////////////////////////////
-interface VideoInfoReceivedCallback {
-    (
-        //TODO
-        ):void
+interface VideoFeedInformation {
+    url: string
+    dataURL: string
+    width: number
+    height: number
+    duration: number
+    hasAudio: boolean
+    hasVideo: boolean
+    playable: boolean
+    buffered: boolean
+    streaming: boolean
+    playing: boolean
+    stopped: boolean
+    paused: boolean
+    finished: boolean
+    error: boolean
 }
 
-interface VideoPlaybackStateChangedCallback {
+interface VideoInfoCallback {
     (
-        //TODO
-        ):void
-}
-
-interface VideoLoadStateChangedCallback {
-    (
-        //TODO
-        ):void
+        join: string,
+        info: VideoFeedInformation
+    ):void
 }
 
 /////////////////////////////////////////////////////SENSORS////////////////////////////////////////////////////////
 interface StartMonitoringCallback {
     (
         sensorType:string,
-        data:SensorDataObject
-        ):void
+        data: AccelerometerGyroscopeSensorOptions
+    ):void
 }
 
-interface SensorOptionsObject {
-    //TODO
+interface AccelerometerGyroscopeSensorOptions {
+    xthreshold?:number
+    ythreshold?:number
+    zthreshold?:number
+    historySize?:number
+    captureInterval?:number
+    reportInterval?:number
 }
 
-interface SensorDataObject {
-    //TODO
+interface AccelerometerGyroscopeSensorData {
+    x:number
+    y:number
+    z:number
+    t:number
+}
+
+interface AttitudeSensorOptions {
+    xthreshold?:number
+    ythreshold?:number
+    zthreshold?:number
+    historySize?:number
+    captureInterval?:number
+    reportInterval?:number
+}
+
+interface AttitudeSensorData {
+    roll:number
+    putch:number
+    yaw:number
+    t:number
+}
+
+interface HeadingSensorOptions {
+    threshold?:number
+    historySize?:number
+    captureInterval?:number
+    reportInterval?:number
+}
+
+interface HeadingSensorData {
+    heading:number
+    t:number
+}
+
+interface LocationSensorOptions {
+    historySize?:number
+    captureInterval?:number
+    reportInterval?:number
+}
+
+interface LocationSensorData {
+    lon:number
+    lat:number
+    alt:number
+    speed:number
+    course:number
+    err:number
 }
 
 /////////////////////////////////////////////////////UTILITIES////////////////////////////////////////////////////////
